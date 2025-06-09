@@ -10,6 +10,8 @@ import temp
 from core.text_splitter import extract_text_per_page
 from core.resume_split_logic import group_resume_pages
 from core.split_pdf import split_pdf_by_groups
+from core.azure_ocr import extract_text_with_azure
+
 
 
 
@@ -50,7 +52,7 @@ class ResumeProcessorGUI(QWidget):
 
         # External Dependency Status
         layout.addWidget(QLabel("External Dependencies Status"))
-        self.status_label = QLabel("Azure DI:  Connected\nAzure Handwriting:  Not Connected\nAzure Vision: Connected\nOpenAI GPT: ✅ Connected")
+        self.status_label = QLabel("Azure DI:  Connected\nAzure Handwriting:  Not Connected\nAzure Vision: Connected\nOpenAI GPT:  Connected")
         layout.addWidget(self.status_label)
         self.refresh_btn = QPushButton("Refresh API Status")
         layout.addWidget(self.refresh_btn)
@@ -123,7 +125,6 @@ class ResumeProcessorGUI(QWidget):
         self.progress_log.clear()
         self.progress_log.append("Starting preprocessing...")
         
-        # Use a temp directory for intermediate files
         temp_dir = os.path.abspath("temp/preprocessed")
         os.makedirs(temp_dir, exist_ok=True)
         self.progress_log.append(f"Preprocessed files saved to: {temp_dir}")
@@ -147,6 +148,8 @@ class ResumeProcessorGUI(QWidget):
         os.makedirs(resume_split_dir, exist_ok=True)
         text_dir = os.path.abspath("temp/raw_texts_per_page")
         os.makedirs(text_dir, exist_ok=True)
+        ocr_output_dir = os.path.abspath("temp/raw_texts_per_page")
+        os.makedirs(ocr_output_dir, exist_ok=True)
 
         self.progress_log.append("Starting resume splitting phase...")
 
@@ -154,7 +157,7 @@ class ResumeProcessorGUI(QWidget):
             if not pdf_file.lower().endswith(".pdf"):
                 continue
             full_path = os.path.join(temp_dir, pdf_file)
-            self.progress_log.append(f"🔍 Reading: {pdf_file}")
+            self.progress_log.append(f" Reading: {pdf_file}")
 
             try:
                 pages = extract_text_per_page(full_path, text_dir)
@@ -164,5 +167,29 @@ class ResumeProcessorGUI(QWidget):
                 self.progress_log.append(f"{len(split_paths)} resumes split from {pdf_file}")
             except Exception as e:
                 self.progress_log.append(f"Failed splitting {pdf_file}: {str(e)}")
+        
+        #ocr
+        self.progress_log.append("Starting Azure OCR Phase...")
+
+        for split_pdf in os.listdir(resume_split_dir):
+            if not split_pdf.lower().endswith(".pdf"):
+                continue
+
+            full_pdf_path = os.path.join(resume_split_dir, split_pdf)
+            txt_filename = os.path.splitext(split_pdf)[0] + ".txt"
+            txt_output_path = os.path.join(ocr_output_dir, txt_filename)
+
+            self.progress_log.append(f" OCR: {split_pdf}")
+            try:
+                extract_text_with_azure(full_pdf_path, txt_output_path)
+                self.progress_log.append(f" OCR success: {split_pdf}")
+            except Exception as e:
+                self.progress_log.append(f" OCR failed: {split_pdf} — {str(e)}")
+
+
+        
+
+           
+
 
 
