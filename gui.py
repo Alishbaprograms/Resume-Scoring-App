@@ -11,6 +11,12 @@ from core.text_splitter import extract_text_per_page
 from core.resume_split_logic import group_resume_pages
 from core.split_pdf import split_pdf_by_groups
 from core.azure_ocr import extract_text_with_azure
+from core.generate_candidate_texts import merge_texts_for_split_pdfs  
+from core.ai_extractor import extract_fields_from_text
+import json
+
+
+
 
 
 
@@ -129,6 +135,14 @@ class ResumeProcessorGUI(QWidget):
         os.makedirs(temp_dir, exist_ok=True)
         self.progress_log.append(f"Preprocessed files saved to: {temp_dir}")
 
+        merged_text_dir = os.path.abspath("temp/raw_texts_per_candidate")
+        os.makedirs(merged_text_dir, exist_ok=True)
+
+        json_output_dir = os.path.abspath(self.json_output)  # already user-defined in GUI
+        os.makedirs(json_output_dir, exist_ok=True)
+
+
+
         all_preprocessed = []
 
         for idx, file in enumerate(self.selected_files, start=1):
@@ -187,9 +201,64 @@ class ResumeProcessorGUI(QWidget):
                 self.progress_log.append(f" OCR failed: {split_pdf} — {str(e)}")
 
 
-        
 
-           
+        self.progress_log.append("Merging OCR text into full candidate blocks...")
+        #merging
+        for split_pdf in os.listdir(resume_split_dir):
+            if not split_pdf.lower().endswith(".pdf"):
+                continue
+
+            pdf_path = os.path.join(resume_split_dir, split_pdf)
+            pdf_stem = os.path.splitext(split_pdf)[0]
+
+            try:
+                # Re-run per-page text extraction (no OCR now)
+                page_texts = extract_text_per_page(pdf_path, ocr_output_dir)  # ensures filenames exist
+                page_groups = group_resume_pages(page_texts)
+
+                merge_texts_for_split_pdfs(
+                    pdf_stem=pdf_stem,
+                    page_groups=page_groups,
+                    page_text_dir=ocr_output_dir,
+                    output_dir=merged_text_dir
+                )
+                self.progress_log.append(f" Merged text: {split_pdf} → {len(page_groups)} candidates")
+            except Exception as e:
+                self.progress_log.append(f"Failed to merge text for {split_pdf}: {str(e)}")
+        
+        
+        self.progress_log.append("Starting AI field extraction with GPT...")
+
+        merged_text_dir = os.path.abspath("temp/raw_texts_per_candidate")
+
+        for file in os.listdir(merged_text_dir):
+            if not file.endswith(".txt"):
+                continue
+
+            txt_path = os.path.join(merged_text_dir, file)
+            json_filename = os.path.splitext(file)[0] + ".json"
+            json_path = os.path.join(json_output_dir, json_filename)
+
+            self.progress_log.append(f" Extracting fields from: {file}")
+            try:
+                with open(txt_path, "r", encoding="utf-8") as f:
+                    text = f.read()
+
+                result = extract_fields_from_text(text)
+
+                with open(json_path, "w", encoding="utf-8") as out_f:
+                    json.dump(result, out_f, indent=2)
+
+                self.progress_log.append(f"Extracted and saved: {json_filename}")
+            except Exception as e:
+                self.progress_log.append(f" Extraction failed for {file}: {str(e)}")
+
+
+
+
+                
+
+                
 
 
 
