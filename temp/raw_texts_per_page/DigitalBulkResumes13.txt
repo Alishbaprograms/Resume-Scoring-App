@@ -1,0 +1,42 @@
++13125221659
+Ishan Saraf
+sarafi@rose-hulman.edu
+5500WabashAvenue,TerreHaute,IN47803
+Education
+Rose-HulmanInstituteofTechnology February2020
+• B.S.ComputerScience TerreHaute,IN
+• DoubleMajorinMathematics
+DhirubhaiAmbaniInternationalSchool May2015
+• InternationalBaccalaureateDiploma Mumbai,India
+Skills
+JavaScript•Java•Python•R•C•Rust•SQL•React•MachineLearning•AutomationTesting•Hindi
+Work Experience
+SonyInteractiveEntertainment,LLC(JavaScript•Python•ReactNative) May-August2019
+MobileApplicationEngineeringIntern SanFrancisco,CA
+•Workedcloselywithdesignerstoprototypeanimationsfornewmethodsof userinteraction
+•InvestigatedanddefinedprocessestoexecuteA/Btestingviacross-teamcollaboration
+•Integratedend-to-endexperimentationserviceforconversionoptimization
+SonyInteractiveEntertainment,LLC(JavaScript•Python•ReactNative) May-August2018
+SoftwareQAIntern SanFrancisco,CA
+•Addedcapabilityforautomatedpushnotificationtesting
+•ImplementedRESTfulAPIsallowingforautomationof 15%of testsuite
+•Wonfirstplaceinthecompanyhackathon
+SonyInteractiveEntertainment,LLC(JavaScript•WebDriverIO•Appium) May-August2017
+SoftwareQAIntern SanFrancisco,CA
+• Upgradedautomatedtestingsystemtoallowforparallel,cloud-basedtesting
+• Stabilizedexistingautomationtestsuiteandpreventedtestdegradation
+• Automatedallnotification-relatedtesting
+DatamaticsGlobalServicesLimited(Java•JavaScript) May-October2016
+ProjectTrainee(Intern) Mumbai,India
+• WorkedonaninternalProjectManagementSystemusedtoplanandtrackuserstories
+• Developedaweb-basedtooltoaidwithtrackingandapprovalof performanceevaluations
+Projects & Activities
+SeniorCapstoneProject(JavaScript•ReactJS•MongoDB•Python) September2018-May2019
+• Developedwebapplicationtoprojectnetincomeaccordingtolocation,job,anddebt
+• Won the Outstanding Capstone Project Award
+SigmaNuFraternity TechnologyChair-2017/2018
+• Maintainandmanagetechnologyservicesforover40people
+• Upgradeandmaintainthefraternitywebsite
+SCUBADiving 2009-Present
+• PADIcertifiedAdvancedOpenWaterDiver
+• Loggedover50divesallovertheworld

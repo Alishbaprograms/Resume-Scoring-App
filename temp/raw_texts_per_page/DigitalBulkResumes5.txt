@@ -1,0 +1,37 @@
+Kevin Ferguson
+14414 General Drive, Plainfield, IL 60544 | 630-800-7797 | kevinferg98@gmail.com
+Objective
+ Obtain an full-time mechanical engineering position that allows me to apply my skills in mathematics to solve real-
+world problems
+Education
+BACHELOR’S OF SCIENCE | MAY 2020 | ROSE-HULMAN INSTITUTE OF TECHNOLOGY
+ Majors: Mechanical Engineering, Mathematics; Minor: Spanish
+ Cumulative GPA: 4.0/4.0
+ Related coursework: Statics, Mechanical Systems, Electrical Systems, Fluid Systems, Control Systems,
+Thermodynamics, Heat Transfer, Design for Manufacturing, Materials Engineering, Computational Science,
+Boundary Value Problems, Vector Calculus, Numerical Analysis, Machine Component Design
+Skills & Abilities
+SOFTWARE
+ Part modeling and drawing creation in SolidWorks
+ Simulation, optimization, and computation in MATLAB and Simulink
+LANGUAGE
+ Professional working proficiency in Spanish
+Experience
+ROSE-HULMAN UNDERGRADUATE RESEARCH FELLOWSHIP | JANUARY 2019
+ Developed a mathematical model to characterize the flow through each valve within a large array of valves
+ Designed and manufactured a two-by-two valve array, and verified the validity of the mathematical model by
+performing multiple experiments
+ Programmed four stepper motors in MATLAB and Simulink to simultaneously control the inputs of the valve array
+CAMERA MOUNT DESIGN PROJECT | JANUARY 2019
+ Collaborated to design a camera mount suitable for examining glucose test strips
+ Modeled a part capable of being cut from sheet metal in SolidWorks
+SOPHOMORE RESIDENT TUTOR | ROSE-HULMAN LEARNING CENTER | AUGUST 2018 – CURRENT
+ Tutored sophomore students in their challenging engineering and math courses
+ Hosted review sessions for upcoming midterms and final exams
+ Communicated with professors to stay up-to-date on course topics
+DOG GATE DESIGN PROJECT | MARCH – MAY 2017
+ Led a team in innovating the standard dog gate to be more affordable and effective
+ Created a prototype of the product using machine shop equipment
+Honors
+ Heminway Scholar – awarded to the students with the highest academic standing after one year of attendance
+ Paul N. Bogart Scholar – awarded to the students with the highest academic standing after two years of attendance

@@ -1,0 +1,45 @@
+Adam K. Baker
+Email: bakerak@rose-hulman.edu
+Phone: (317) 446-7982
+13070 Prairie Baptist Road, Fishers, IN
+Objective:
+To continue to grow in my understanding of the world around us through a data science and analytics mindset through a
+full-time opportunity
+Education:
+Rose-Hulman Institute of Technology Terre Haute, IN May 2020 Graduation
+Bachelor of Science, Mathematics 3.59 GPA
+Concentration: Statistics and Data Science
+Related Coursework: Statistical Methods in Six Sigma, Applied Linear Regression and Intro to Time Series, Statistical
+Programming, Bioengineering Statistics, Deterministic and Stochastic Models in Operations Research, Linear Algebra,
+Real Analysis, Deep Learning, Quality Methods, Data Mining, Econometrics, Machine Learning, Labor Economics
+Professional Experience:
+Ball Aerospace Boulder, Colorado
+Data Analytics Intern June - August 2019
+ Project lead for several research and opportunity assignments
+ Identified purchase order mismatches and established reports to solve up to $1.54 million receiving issues
+ Aggregated and operationalized hazardous material report to comply with state and federal reporting laws
+ Restructured and slated a project to capture previously uncatalogued trends for MTO group
+University Loft Greenfield, Indiana
+Production Intern May - August 2018
+ Established an analytical and predictive program in R for labor efficiency rates
+ Diagnosed problem areas and utilized Six Sigma training to aid Production Manager
+ Coordinated production and shipping shortages to improve customer satisfaction
+Elanco Fishers, Indiana
+Analytics Intern May – August 2017
+ Input 6 months’ worth of daily processing data in order to complete data analysis
+ Analyzed carcass damage and dead on arrival results leading to key insights for plant management
+ Developed automated spreadsheet for management to track key process indicators
+ Discovered how to use macros and improved Visual Basic knowledge
+Skills:
+ Software: R, SAS, Tableau, Maple, Java, Python, pandas, Visual Basic, SQL, and VQL
+ Mathematical/Data Analysis Techniques: AR and MA Time Series Modeling, Polynomial and Linear
+Regression, Monte Carlo Simulations, Bootstrapping, Mixed Effects Models, Markov Chains, Queue Theory,
+Deep Learning, Data Clustering, Random Forest, Gradient Boosted Trees, and Web Scraping
+ Six Sigma Trained: Kano Models, VOC analysis, Sigma Levels, DPM Calculations, Gage R&R
+Leadership:
+Career Services’ Career Fair Student Team: Co-Chair 2018-20
+Triangle Fraternity: Treasurer 2018-19
+Career Services and Employer Relations: Peer Advisor 2017-19
+Triangle Fraternity: Interfraternity Council Representative 2017-18
+Triangle Fraternity: Student Government Association 2016-18
+Triangle Fraternity: Spring Activity Coordinator 2016-17

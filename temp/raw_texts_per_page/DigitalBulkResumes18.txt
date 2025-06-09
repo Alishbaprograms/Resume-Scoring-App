@@ -1,0 +1,39 @@
+Hao (Anderson) Yang
+5500 Wabash Avenue CM 2032, Terre Haute, IN 47803
+yangh4@rose-hulman.edu Cell: +1 (812)-251-9079
+Objective
+ Seeking internship as a Software Engineer.
+Education
+Rose-Hulman Institute of Technology Graduate by 2020
+Bachelor in Computer Science double Mathematics (discrete field) GPA 3.73
+Shenzhen Middle School September 2013 - June 2016
+Graduated by 2016
+Skills
+ Have at least 3 years’ experience in Java, Android Studio, Google Firebase Database, C and T-SQL
+database.
+ Experienced with C#, Unity 3D Engine, Artificial Intelligence, Python.
+Experiences
+Summer Research: Cellular Automata Terre Haute, IN
+Undergraduate Student Researcher June – September 2018
+ Designed a Stranded Cellular Automata to model common weaving and braiding patterns.
+ Analyzed the complexity of Automata by finding the maximum cycle length of any given grid.
+ Implemented a Java program to find initial conditions and rules that would generate distinct
+weaving patterns for any given width with the help of graph theory.
+Android Game: Monopoly Terre Haute, IN
+Team member (3 Members on one team) November 2017 – February 2018
+ Designed and created an android game called Monopoly.
+ Allowed users to create and join the real-time game based on T-SQL database.
+ Participated in the group as a full stack developer.
+Android App: Roommates splitting bill app Shenzhen, China
+Team member (2 Members on one team) July – August 2017
+ Designed and developed a Mobile App using Android Studio and implemented database with
+Google Firebase Database to solve the splitting bill problem.
+ Allowed users to join group and calculate balance based on item purchased using with the
+advantage of Firebase Database (login system and querying).
+ Enabled owner of the app push notification to the users using downstream messaging.
+Activities
+ ACM-ICPC Contest Rose-Hulman
+ Member of Society of Asian Scientists and Engineers Rose-Hulman
+ Featured in the inaugural edition of Student Spotlight Rose-Hulman
+ Teaching Assistant for Programming Language Concept, Theory of Computation and
+Design and Design and Analysis of Algorithms Rose-Hulman

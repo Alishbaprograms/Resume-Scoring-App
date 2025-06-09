@@ -1,0 +1,45 @@
+Gordon Phoon
+phoongm@rose-hulman.edu 5500 Wabash Avenue, CM 1872
+(914) 924-0160 Terre Haute, IN 47802
+EDUCATION:
+Rose-Hulman Institute of Technology, Terre Haute IN Class of 2020
+BS in Computer Science and Mathematics | Senior | GPA: 3.57
+Related Coursework: Data Structures and Algorithm Analysis, Computer
+Architecture, Operating Systems, Software Requirements Engineering,
+Programming Language Paradigms, Malware Analysis/Reverse Engineering,
+Algebraic Codes, Software Design
+EXPERIENCE:
+Software Development Internship: Microsoft, Redmond, MA May-Aug 2019
+ Created proxy API for .NET Core for use with plugin models
+ Developed C# prototype on an open-source Github repo (dotnet/corefxlab)
+ Performance 1x-10x faster than AppDomain proxies from .NET Framework
+ Took ownership over design decisions to drive an extensible framework
+Software Development Internship: Microsoft Garage, Garage at Cambridge, MA May-Aug 2018
+ Modified UWP application for use with HoloLens
+ Developed both front and back end using XAML and C#
+ Responsible for continuous integration and repo maintenance over
+two separate systems for a seven person team with Git and VSTS
+Teacher’s Assistant: Operating Systems, Rose-Hulman Feb-May 2018
+ Assisted and graded about 70 students in C-programming assignments
+ Worked with 40 students during labs aiding in barebones OS construction
+Instructor: Java Coding, iD Tech Camps May-Aug 2017
+ Taught Java programming and object oriented design to high school students
+ Assisted students in developing simple games using Java class structures
+PROJECTS:
+Speech to Code: Hack UMass 2018, University of Massachusetts Amherst Nov 2018
+ Developed prototype that uses speech to generate runnable code snippets
+ Implemented Prolog backend to process natural language into Ruby code
+Engineering Escape Rooms: Microsoft Hackathon, Garage at Cambridge, MA Jul 2018
+ Designed and created a sample escape room using Micro:bit/JS
+ Being used as a teaching tool for an entry level class into STEM education
+ Won “Passing the Torch” award at Microsoft New England office
+Boarding Action: Game Development Final Project, Rose-Hulman Sep 2017-May 2018
+ Led team in designing and developing Strategy game using Unity/C#
+ Implemented pathfinding, character customization, and GUI elements
+SKILLS:
+ Languages: C#, Java, C, x86Assembly, Scheme, Python, Prolog, and XAML
+ Knowledge of .NET, advanced Git functions, Unity, Micro:Bit, and MySQL
+ACTIVITIES:
+ Treasurer (Formerly Fellowship Chair), Alpha Phi Omega service fraternity
+ President (Formerly VP and Treasurer), Rose-Hulman Board Games Club
+References Available by Request

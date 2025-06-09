@@ -1,0 +1,46 @@
+David A. Saadatnezhadi
+5500 Wabash Ave, Terre Haute, IN 47803 CM 1906 | 415-419-6125 | saadatda@rose-hulman.edu
+108 Ross Ave. #8, San Anselmo, CA 94960
+Education
+BACHELOR OF SCIENCE, MATHEMATICS | GPA 3.25/4.0 May 2020
+Rose–Hulman Institute of Technology
+ Minor: Data Science
+ Related Courses: Intro to Software Development, Object-Oriented Software Development, Probability,
+Differential Equations, Linear Algebra, Functions of a Real Variable, Quality Methods, Biostatistics,
+Econometrics, Deep Learning, Data Mining, Machine Learning, Statistical Programming
+Work Experience
+NYSE Arca Options Exchange Summer 2019
+MJT Software Development
+Trading Intern | San Francisco, CA
+ Acquired introductory knowledge of options, risk management strategies, and the
+relationship between market makers, brokers, and regulators on the exchange floor
+ Examined theoretical pricing models and volatility skews to detect trades with minimal risk
+ Investigated relationships between option greeks and how recurring changes in the market
+affect option pricing
+Proctor Engineering Group Summer 2018-2019
+Data Analyst | San Rafael, CA
+ Utilized a complex algorithm to analyze the performance of air conditioning units
+ Optimized the data for contractors to use with their customers
+ Communicated with technicians and customers daily and recommended potential repairs
+Skills
+ Coding Languages: R, Python (e.g. Sklearn, Pandas), Java, MATLAB, HTML, Maple, Minitab
+ Software: Jupyter Notebooks, Microsoft Office Suite (Word, Excel, and PowerPoint), LaTeX
+Projects
+March Madness Machine Learning Project March – May 2019
+ Applied machine learning techniques to NCAA Division I basketball data
+ Utilized Python to predict winners using feature engineering, PCA, logistic regression, KNN,
+decision trees, random forests, gradient boosting, and support vector machines
+College Swimming Data Mining Project December – February 2019
+ Performed data mining techniques on collegiate swimming data
+ Used Python to analyze the dataset, generated a predictive model, and create data
+visualizations such as boxplots, decision trees, K-means clustering, and a dynamic heat map
+Spatial Wildfire Occurrence Data Challenge September – November 2018
+ Analyzed spatial wildfire occurrence data for the United States from 1992-2015
+ Implemented R to clean and plot the data and fit multivariable linear regression models,
+ANOVA models, and Turkey’s HSD multiple comparison method
+Leadership
+ Rose-Hulman Men’s NCAA Division III Basketball Team 2016 – Present
+o Teammate Award, NABC Honors Court member
+ Alpha Tau Omega 2016 – Present
+o Executive Board (Risk Manager)
+o Judicial Board member, Brotherly Relations Officer 2018 – Present

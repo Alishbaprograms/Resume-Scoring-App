@@ -1,0 +1,43 @@
+Seiji R. Takagi
+Seiji.R.Takagi@Rose-Hulman.edu • (917) 861-0820 • U.S. Citizen
+2 Edmarth Place, Hastings-on-Hudson, NY 10706
+Objective: Seeking an internship in the summer of 2020 and a full-time position for Nov. 2020
+Education: Bachelor of Science, Computer Science and Mathematics November 2020
+Rose-Hulman Institute of Technology – Terre Haute, IN GPA 3.0/4.0
+• Honors: Leader of the Year (2017-18), Involvement Award (2017-19), Dean’s list (x4)
+• Related Courses: Software Design; Data Structures & Algorithms; Computer Security;
+Financial Mathematics; Econometrics; Linear Algebra; Probability; Operating Systems
+Skills: • Languages: Proficient with Python, Java, C#, C, T-SQL, PowerShell, and Bash
+scripting; familiar with JavaScript, Visual Basic, and R
+• Development Tools: Git, Visual Studio, Jira, and Enterprise Architecture
+• Systems Administration: IIS, Windows Server, Azure, Office 365, and SharePoint
+• Security Tools: Wireshark, John, and Kali Linux; familiar with Burpsuite and IDA
+Internships: Systems Engineer Intern | Collins Aerospace | Cedar Rapids, IA June – Aug. 2019
+On the Product Line Security team in the Navigation division of Mission Systems
+• Documented a software verification tool by reverse-engineering the tool's design
+• Contributed to a white paper on designing the product to meet certification requirements
+Software Development Intern | Healthx | Indianapolis, IN May – Aug. 2018
+• Gained experience in backend (ASP.Net), and frontend (JavaScript, Ajax) development
+• Built upon and resolved bugs in a large 20-year-old legacy codebase
+• Participated in the sprints of a scrum-style agile development team
+Experience: Supervisor | AskRose Homework Help | Rose-Hulman Sept. 2016 – Current
+• Oversee 15 to 30 tutors at the call center, resolving issues as they occur
+• Provide over-the-phone tutoring in STEM subjects to middle and high school students
+Teaching Assistant and Lecturer | Practical Security | Rose-Hulman Sept. 2017 – Feb. 2019
+• Helped teach a course on introductory computer security topics to 30 to 50 students
+• Lectured on topics such as Linux, Wireshark, cryptography, and steganography
+Service Desk Attendant | Enterprise IT | Rose-Hulman Mar. 2017 – Current
+• Provide assistance with computer, network, and telephone related problems
+• Troubleshoot and repair first-level software and hardware issues
+Projects: Student Government Treasury Accounting App | Database Systems | Rose-Hulman Apr. – May 2018
+• Developed an ASP.Net web accounting application with a SQL database
+• Worked with the Student Government to fulfill their business needs
+University Hospital Asset Tracking | Computing in a Global Society | Uppsala, Sweden Dec. 2017
+• Researched an asset-tracking solution for Uppsala University Hospital
+• Collaborated with an international team of Uppsala University and Rose students
+Leadership: Society of Asian Scientists and Engineers, Vice President & Conference Chair Apr. 2018 – Current
+Computer Security Club, Secretary Mar. 2017 – Current
+Career Services and Employer Relations Student Team, Co-Chair Apr. 2017 – Current
+Kappa Theta Pi (Professional Technology Fraternity), Vice President Mar. 2018 – Current
+Rose-Hulman Hackers, Vice President Feb. 2018 – May 2019
+Student Government Association, Treasurer Dec. 2017 – Mar. 2019

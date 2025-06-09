@@ -1,0 +1,50 @@
+Mitchell J. Schmidt
+schmidmj@rose-hulman.edu
+School Address: Home Address:
+5500 Wabash Avenue, CM 1915 1327 N Northlake Way Ste. A
+Terre Haute, IN 47802 Seattle, WA 98103
+(425) 999-6343 (425) 999-6343
+Objective: To obtain a full-time software engineer position.
+Education: Bachelor of Science in Computer Science & Math February 2020
+Rose-Hulman Institute of Technology, Terre Haute, IN
+Status: Fourth year, GPA 3.69/4.0
+Related Courses: Object-Oriented Software Development, Advanced Git, Data
+Structures, Machine Learning in R, Programming Language Concepts, Operating
+Systems, Computer Architecture I and II, Intro to Databases, Software Design
+Skills: Proficient with Java, experience w/ C, C#, Node.JS, Vue.JS, Ruby, R, Scheme, SQL
+Experience with Ruby on Rails, Hadoop, UIMA Pipelines
+Proficient with Windows, macOS, Microsoft Office Suite, experience with Ubuntu
+Communication skills demonstrated through leadership activities
+Experience: Groupon – Coupons Team, Chicago, IL Summer 2019
+Full Stack Software Development Intern
+ Improved SEO by implementing a popular offers table and dynamic fields
+ Developed release automation software
+ Gained experience in Agile development
+Rose-Hulman - Computer Science Department, Terre Haute, IN 2017 - Present
+Lab Assistant
+ In CS labs for at least 8 hours a week to be a resource for students with questions
+about homework, projects and concepts
+ Assist with grading homework, projects and exams
+Microsoft Corporation – Applied Sciences Group, Redmond, WA Summer 2016
+Hardware/Software Engineering Tech
+ Contributed to research project later demonstrated to Bill Gates
+ Calibrated and synchronized multiple cameras using Arduino
+ Contributed to assembly, programming and wiring of device
+Projects: Human Robot Collaboration Current
+Team Member – Senior Project
+ Research on how to make interaction with robots more human-like through
+understanding spatial relationships and naming
+ Utilizes a UIMA pipeline in order to be extremely modular
+ Research to be published in book “Human-machine Shared Context”
+Giant Multiplayer Robot (GMR) Text Notifier Summer 2018
+Personal Project
+ App that interfaces with game service to text players when it is their turn
+ Uses Java, GMR website REST API, SMS from email
+Activities: Trombone Section Leader of RHIT Pep Band and Concert Band
+Member of RHIT Orchestra, Jazz Band, Brass Quintet, and Brass Choir
+Director of Technology for Kappa Theta Pi
+Honors: Rose-Hulman Dean’s List 2016 - 2019
+National Merit Commended Scholar 2016
+John Phillip Sousa Band Award 2016
+Black Belt in Shudokan Karate
+Referrals available upon request
