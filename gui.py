@@ -5,70 +5,18 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 import sys, os
-from pathlib import Path
-from core.preprocessor import preprocess_file
+from core.preprocessor import preprocess_file  # assuming you save it in core/preprocessor.py
+import temp
 from core.text_splitter import extract_text_per_page
 from core.resume_split_logic import group_resume_pages
 from core.split_pdf import split_pdf_by_groups
-from core.azure_ocr import extract_text_with_azure
-from core.generate_candidate_texts import merge_texts_for_split_pdfs  
 
-from PyQt5.QtCore import QThread, pyqtSignal
-import traceback
 
-class ResumeWorker(QThread):
-    log_signal = pyqtSignal(str)  # Send messages back to GUI
-
-    def __init__(self, files, pdf_output, json_output):
-        super().__init__()
-        self.files = files
-        self.pdf_output = pdf_output
-        self.json_output = json_output
-
-    def run(self):
-        try:
-            from core.preprocessor import preprocess_file
-            from core.azure_ocr import extract_text_with_azure
-            from core.text_splitter import extract_text_per_page
-            from core.resume_split_logic import group_resume_pages
-            from core.split_pdf import split_pdf_by_groups
-            from core.generate_candidate_texts import merge_texts_for_split_pdfs
-
-            pre_dir = "temp/preprocessed"
-            txt_per_page_dir = "temp/raw_texts_per_page"
-            txt_per_candidate_dir = "temp/raw_texts_per_candidate"
-
-            os.makedirs(pre_dir, exist_ok=True)
-            os.makedirs(txt_per_page_dir, exist_ok=True)
-            os.makedirs(txt_per_candidate_dir, exist_ok=True)
-            os.makedirs(self.pdf_output, exist_ok=True)
-            os.makedirs(self.json_output, exist_ok=True)
-
-            for file_path in self.files:
-                self.log_signal.emit(f"🔧 Preprocessing: {os.path.basename(file_path)}")
-                preprocessed_pdfs = preprocess_file(file_path, pre_dir)
-
-                for pdf in preprocessed_pdfs:
-                    self.log_signal.emit(f"OCR: {os.path.basename(pdf)}")
-                    output_txt_path = os.path.join(txt_per_page_dir, f"{Path(pdf).stem}.txt")
-                    self.log_signal.emit(f"🧠 Azure OCR → {output_txt_path}")
-                    extract_text_with_azure(pdf, output_txt_path)
-                    page_texts = extract_text_per_page(pdf, txt_per_page_dir)
-                    groups = group_resume_pages(page_texts)
-                    self.log_signal.emit(f"📊 Detected {len(groups)} candidate(s).")
-
-                    split_paths = split_pdf_by_groups(pdf, groups, self.pdf_output)
-                    merge_texts_for_split_pdfs(split_paths, groups, txt_per_page_dir, txt_per_candidate_dir)
-
-            self.log_signal.emit("✅ Processing complete.")
-
-        except Exception as e:
-            self.log_signal.emit(f" Error: {str(e)}\n{traceback.format_exc()}")
 
 class ResumeProcessorGUI(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Resume Parser- Adam")
+        self.setWindowTitle("The Team")
         self.resize(800, 600)
 
         self.selected_files = []
@@ -77,6 +25,7 @@ class ResumeProcessorGUI(QWidget):
 
         layout = QVBoxLayout()
 
+        # Output Directories
         layout.addWidget(QLabel("Output Directories"))
 
         self.pdf_output_field = QLineEdit()
@@ -99,12 +48,14 @@ class ResumeProcessorGUI(QWidget):
         json_layout.addWidget(self.json_browse_btn)
         layout.addLayout(json_layout)
 
+        # External Dependency Status
         layout.addWidget(QLabel("External Dependencies Status"))
-        self.status_label = QLabel("Azure DI: Connected\nAzure Handwriting: Not Connected\nAzure Vision: Connected\nOpenAI GPT: Connected")
+        self.status_label = QLabel("Azure DI:  Connected\nAzure Handwriting:  Not Connected\nAzure Vision: Connected\nOpenAI GPT: ✅ Connected")
         layout.addWidget(self.status_label)
         self.refresh_btn = QPushButton("Refresh API Status")
         layout.addWidget(self.refresh_btn)
 
+        # File List + Add/Remove/Clear
         layout.addWidget(QLabel("Select Input Files (Drag & Drop or Add)"))
 
         self.file_list = QListWidget()
@@ -122,10 +73,12 @@ class ResumeProcessorGUI(QWidget):
         btn_row.addWidget(self.clear_btn)
         layout.addLayout(btn_row)
 
+        # Start Button
         self.start_btn = QPushButton("Start Processing Selected Files")
         self.start_btn.clicked.connect(self.start_processing)
         layout.addWidget(self.start_btn)
 
+        # Progress Monitor
         layout.addWidget(QLabel("Progress Monitor"))
         self.progress_log = QTextEdit()
         self.progress_log.setReadOnly(True)
@@ -166,52 +119,50 @@ class ResumeProcessorGUI(QWidget):
         if not self.pdf_output or not self.json_output:
             QMessageBox.warning(self, "Missing Output", "Please set both PDF and JSON output folders.")
             return
-        self.progress_log.append("Starting threaded resume processing...\n")
 
-        self.worker = ResumeWorker(
-            files=self.selected_files,
-            pdf_output=self.pdf_output,
-            json_output=self.json_output
-        )
-        self.worker.log_signal.connect(self.progress_log.append)
-        self.worker.start()
+        self.progress_log.clear()
+        self.progress_log.append("Starting preprocessing...")
+        
+        # Use a temp directory for intermediate files
+        temp_dir = os.path.abspath("temp/preprocessed")
+        os.makedirs(temp_dir, exist_ok=True)
+        self.progress_log.append(f"Preprocessed files saved to: {temp_dir}")
 
-        pre_dir = "temp/preprocessed"
-        txt_per_page_dir = "temp/raw_texts_per_page"
-        split_dir = self.pdf_output
-        txt_per_candidate_dir = "temp/raw_texts_per_candidate"
+        all_preprocessed = []
 
-        os.makedirs(pre_dir, exist_ok=True)
-        os.makedirs(txt_per_page_dir, exist_ok=True)
-        os.makedirs(split_dir, exist_ok=True)
-        os.makedirs(txt_per_candidate_dir, exist_ok=True)
+        for idx, file in enumerate(self.selected_files, start=1):
+            self.progress_log.append(f"[{idx}/{len(self.selected_files)}] Preprocessing: {os.path.basename(file)}")
+            try:
+                result_pdfs = preprocess_file(file, temp_dir)
+                all_preprocessed.extend(result_pdfs)
+                self.progress_log.append(f" Processed: {os.path.basename(file)} → {len(result_pdfs)} PDFs")
+            except Exception as e:
+                self.progress_log.append(f" Failed: {os.path.basename(file)} — {str(e)}")
 
-        self.progress_log.append("Starting file processing...\n")
+        self.progress_log.append("Preprocessing complete.")
+        self.progress_log.append(f"All cleaned PDFs are in: {temp_dir}")
 
-        for file_path in self.selected_files:
-            file_name = os.path.basename(file_path)
-            self.progress_log.append(f"🔧 Preprocessing: {file_name}")
-            preprocessed_paths = preprocess_file(file_path, pre_dir)
+        #split logix :)
+        resume_split_dir = os.path.abspath("temp/resume_splits")
+        os.makedirs(resume_split_dir, exist_ok=True)
+        text_dir = os.path.abspath("temp/raw_texts_per_page")
+        os.makedirs(text_dir, exist_ok=True)
 
-            for pdf in preprocessed_paths:
-                base_name = Path(pdf).stem
-                self.progress_log.append(f" Extracting: {base_name}.pdf")
+        self.progress_log.append("Starting resume splitting phase...")
 
-                extract_text_with_azure(pdf, os.path.join(txt_per_page_dir, f"{base_name}.txt"))
-                page_texts = extract_text_per_page(pdf, txt_per_page_dir)
+        for pdf_file in os.listdir(temp_dir):
+            if not pdf_file.lower().endswith(".pdf"):
+                continue
+            full_path = os.path.join(temp_dir, pdf_file)
+            self.progress_log.append(f"🔍 Reading: {pdf_file}")
 
-                groups = group_resume_pages(page_texts)
-                self.progress_log.append(f" Resumes Detected: {len(groups)}")
+            try:
+                pages = extract_text_per_page(full_path, text_dir)
+                groups = group_resume_pages(pages)
+                split_paths = split_pdf_by_groups(full_path, groups, resume_split_dir)
 
-                split_pdf_by_groups(pdf, groups, split_dir)
-                merge_texts_for_split_pdfs(base_name, groups, txt_per_page_dir, txt_per_candidate_dir)
+                self.progress_log.append(f"{len(split_paths)} resumes split from {pdf_file}")
+            except Exception as e:
+                self.progress_log.append(f"Failed splitting {pdf_file}: {str(e)}")
 
-                self.progress_log.append(" All files processed and split successfully.\n")
-
-        self.progress_log.append("DEBUG: Starting processing...")
-        for file in self.selected_files:
-            self.progress_log.append(f"DEBUG: File queued - {file}")
-        self.progress_log.append(f"DEBUG: PDF Output → {self.pdf_output}")
-        self.progress_log.append(f"DEBUG: JSON Output → {self.json_output}")
-        self.progress_log.append("DEBUG: Simulated connection test for OpenAI and Azure APIs successful.")
 

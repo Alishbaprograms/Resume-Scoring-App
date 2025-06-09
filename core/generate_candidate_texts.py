@@ -10,6 +10,6 @@ def merge_texts_for_split_pdfs(pdf_stem, page_groups, page_text_dir, output_dir)
             if os.path.exists(page_path):
                 with open(page_path, "r", encoding="utf-8") as f:
                     merged += f"\n--- Page {i+1} ---\n" + f.read()
-        out_file = os.path.join(output_dir, f"{pdf_stem}_candidate{idx+1}.txt")
+        out_file = os.path.join(output_dir, f"{pdf_stem}{idx+1}.txt")
         with open(out_file, "w", encoding="utf-8") as f:
             f.write(merged)
