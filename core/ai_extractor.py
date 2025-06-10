@@ -10,6 +10,12 @@ def extract_fields_from_text(text, model="gpt-4o"):
     system_msg = "You are a helpful assistant that extracts structured resume information."
 
     prompt = f"""
+Score this candidate's resume on the following criteria:
+1. Technical Capabilities (0–15)
+2. Aligned to Arcadis Values (0–15)
+3. Prior Experience (0–10)
+4. Resume Quality/Flow (0–10)
+5. Degree Alignment (0–20)
 Given the text below, extract the following details:
 - Full Name
 - Email Address

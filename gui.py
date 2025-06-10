@@ -14,6 +14,8 @@ from core.azure_ocr import extract_text_with_azure
 from core.generate_candidate_texts import merge_texts_for_split_pdfs  
 from core.ai_extractor import extract_fields_from_text
 import json
+from core.final_bundler import bundle_pdf_and_json
+
 
 
 
@@ -140,6 +142,10 @@ class ResumeProcessorGUI(QWidget):
 
         json_output_dir = os.path.abspath(self.json_output)  # already user-defined in GUI
         os.makedirs(json_output_dir, exist_ok=True)
+        
+        final_output_dir = os.path.abspath("output")
+        os.makedirs(os.path.join(final_output_dir, "final_pdfs"), exist_ok=True)
+        os.makedirs(os.path.join(final_output_dir, "jsons"), exist_ok=True)
 
 
 
@@ -252,6 +258,28 @@ class ResumeProcessorGUI(QWidget):
                 self.progress_log.append(f"Extracted and saved: {json_filename}")
             except Exception as e:
                 self.progress_log.append(f" Extraction failed for {file}: {str(e)}")
+
+        #final bundling
+        self.progress_log.append("Starting final bundling and renaming of PDFs...")
+
+        for split_pdf in os.listdir(resume_split_dir):
+            if not split_pdf.endswith(".pdf"):
+                continue
+
+            pdf_path = os.path.join(resume_split_dir, split_pdf)
+            base_name = os.path.splitext(split_pdf)[0]
+            json_path = os.path.join(json_output_dir, base_name + ".json")
+
+            if not os.path.exists(json_path):
+                self.progress_log.append(f"⚠️ Skipping: No matching JSON for {split_pdf}")
+                continue
+
+            try:
+                final_pdf, final_json = bundle_pdf_and_json(pdf_path, json_path, final_output_dir)
+                self.progress_log.append(f" Bundled → {os.path.basename(final_pdf)}")
+            except Exception as e:
+                self.progress_log.append(f" Bundle failed for {split_pdf}: {str(e)}")
+
 
 
 
