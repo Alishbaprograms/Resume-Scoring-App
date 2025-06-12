@@ -1,6 +1,5 @@
 from PyPDF2 import PdfMerger
 import json, os
-# from filename_builder import build_filename
 import re
 
 def sanitize_filename(s):
@@ -12,6 +11,7 @@ def build_filename(data):
     major = data.get("Major", "Unknown")
     school = data.get("Latest University", "Unknown")
     grad = data.get("Graduation Date", "Unknown")
+    score =data.get("Total Score", "Unknown")
 
     met = ""
     if data.get("Met on Campus", False):
@@ -22,7 +22,7 @@ def build_filename(data):
     score_str = f" – Score: {cam_score}" if cam_score else ""
 
     full_name = sanitize_filename(
-        f"{name} – {degree}, {major} – {school} ({grad}){met}{score_str}"
+        f"{name} – {degree}, {major} – {school} ({grad}){met}{score}"
     )
     return full_name
 
@@ -48,3 +48,4 @@ def bundle_pdf_and_json(split_pdf_path, json_path, final_output_dir):
     merger.close()
 
     return pdf_output_path, json_output_path
+

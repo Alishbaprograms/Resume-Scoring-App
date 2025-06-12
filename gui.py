@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt
 import sys, os
+import glob
 from core.preprocessor import preprocess_file  # assuming you save it in core/preprocessor.py
 import temp
 from core.text_splitter import extract_text_per_page
@@ -123,6 +124,7 @@ class ResumeProcessorGUI(QWidget):
         self.file_list.clear()
 
     def start_processing(self):
+        
         if not self.selected_files:
             QMessageBox.warning(self, "No Files", "Please add files to process.")
             return
@@ -162,6 +164,7 @@ class ResumeProcessorGUI(QWidget):
 
         self.progress_log.append("Preprocessing complete.")
         self.progress_log.append(f"All cleaned PDFs are in: {temp_dir}")
+        
 
         #split logix :)
         resume_split_dir = os.path.abspath("temp/resume_splits")
@@ -209,6 +212,9 @@ class ResumeProcessorGUI(QWidget):
 
 
         self.progress_log.append("Merging OCR text into full candidate blocks...")
+        for f in glob.glob("output/jsons/*"):
+                        if os.path.isfile(f):
+                            os.remove(f)
         #merging
         for split_pdf in os.listdir(resume_split_dir):
             if not split_pdf.lower().endswith(".pdf"):
@@ -276,6 +282,46 @@ class ResumeProcessorGUI(QWidget):
 
             try:
                 final_pdf, final_json = bundle_pdf_and_json(pdf_path, json_path, final_output_dir)
+                try:
+                    
+
+                    # Delete split PDF
+                    os.remove(pdf_path)
+
+                    # Delete all files in temp/preprocessed
+                    for f in glob.glob("temp/preprocessed/*"):
+                        if os.path.isfile(f):
+                            os.remove(f)
+                    
+
+                    # Delete all files in temp/raw_texts_per_candidate
+                    for f in glob.glob("temp/raw_texts_per_candidate/*"):
+                        if os.path.isfile(f):
+                            os.remove(f)
+
+                    # Delete all files in temp/raw_texts_per_page
+                    for f in glob.glob("temp/raw_texts_per_page/*"):
+                        if os.path.isfile(f):
+                            os.remove(f)
+
+                    # Delete all files in temp/azure_ocr_imgs
+                    for f in glob.glob("temp/azure_ocr_imgs/*"):
+                        if os.path.isfile(f):
+                            os.remove(f)
+ 
+                    # Delete JSON output
+                    json_dir = "output/jsons"
+                    for f in os.listdir(json_dir):
+                        if base_name in f:
+                            try:
+                                os.remove(os.path.join(json_dir, f))
+                            except Exception as e:
+                                self.progress_log.append(f" Could not remove image {f}: {e}")
+
+
+                    self.progress_log.append(f" Cleaned temp files for: {base_name}")
+                except Exception as cleanup_err:
+                    self.progress_log.append(f" Failed to clean temp files for {base_name}: {str(cleanup_err)}")
                 self.progress_log.append(f" Bundled → {os.path.basename(final_pdf)}")
             except Exception as e:
                 self.progress_log.append(f" Bundle failed for {split_pdf}: {str(e)}")
