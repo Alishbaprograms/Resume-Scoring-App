@@ -22,7 +22,7 @@ def build_filename(data):
     score_str = f" – Score: {cam_score}" if cam_score else ""
 
     full_name = sanitize_filename(
-        f"{name} – {degree}, {major} – {school} ({grad}){met}{score}"
+        f"{name} – {degree}, {major} – {school} ({grad}){met} score- {score}"
     )
     return full_name
 

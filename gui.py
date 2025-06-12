@@ -27,7 +27,7 @@ from core.final_bundler import bundle_pdf_and_json
 class ResumeProcessorGUI(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("The Team")
+        self.setWindowTitle("Adam")
         self.resize(800, 600)
 
         self.selected_files = []
@@ -59,12 +59,6 @@ class ResumeProcessorGUI(QWidget):
         json_layout.addWidget(self.json_browse_btn)
         layout.addLayout(json_layout)
 
-        # External Dependency Status
-        layout.addWidget(QLabel("External Dependencies Status"))
-        self.status_label = QLabel("Azure DI:  Connected\nAzure Handwriting:  Not Connected\nAzure Vision: Connected\nOpenAI GPT:  Connected")
-        layout.addWidget(self.status_label)
-        self.refresh_btn = QPushButton("Refresh API Status")
-        layout.addWidget(self.refresh_btn)
 
         # File List + Add/Remove/Clear
         layout.addWidget(QLabel("Select Input Files (Drag & Drop or Add)"))
@@ -134,10 +128,13 @@ class ResumeProcessorGUI(QWidget):
 
         self.progress_log.clear()
         self.progress_log.append("Starting preprocessing...")
+        QApplication.processEvents()
         
         temp_dir = os.path.abspath("temp/preprocessed")
         os.makedirs(temp_dir, exist_ok=True)
         self.progress_log.append(f"Preprocessed files saved to: {temp_dir}")
+        QApplication.processEvents()
+
 
         merged_text_dir = os.path.abspath("temp/raw_texts_per_candidate")
         os.makedirs(merged_text_dir, exist_ok=True)
@@ -155,15 +152,20 @@ class ResumeProcessorGUI(QWidget):
 
         for idx, file in enumerate(self.selected_files, start=1):
             self.progress_log.append(f"[{idx}/{len(self.selected_files)}] Preprocessing: {os.path.basename(file)}")
+            QApplication.processEvents()
             try:
                 result_pdfs = preprocess_file(file, temp_dir)
                 all_preprocessed.extend(result_pdfs)
                 self.progress_log.append(f" Processed: {os.path.basename(file)} → {len(result_pdfs)} PDFs")
+                QApplication.processEvents()
             except Exception as e:
                 self.progress_log.append(f" Failed: {os.path.basename(file)} — {str(e)}")
+                QApplication.processEvents()
 
         self.progress_log.append("Preprocessing complete.")
+        QApplication.processEvents()
         self.progress_log.append(f"All cleaned PDFs are in: {temp_dir}")
+        QApplication.processEvents()
         
 
         #split logix :)
@@ -175,12 +177,14 @@ class ResumeProcessorGUI(QWidget):
         os.makedirs(ocr_output_dir, exist_ok=True)
 
         self.progress_log.append("Starting resume splitting phase...")
+        QApplication.processEvents()
 
         for pdf_file in os.listdir(temp_dir):
             if not pdf_file.lower().endswith(".pdf"):
                 continue
             full_path = os.path.join(temp_dir, pdf_file)
             self.progress_log.append(f" Reading: {pdf_file}")
+            QApplication.processEvents()
 
             try:
                 pages = extract_text_per_page(full_path, text_dir)
@@ -188,11 +192,14 @@ class ResumeProcessorGUI(QWidget):
                 split_paths = split_pdf_by_groups(full_path, groups, resume_split_dir)
 
                 self.progress_log.append(f"{len(split_paths)} resumes split from {pdf_file}")
+                QApplication.processEvents()
             except Exception as e:
                 self.progress_log.append(f"Failed splitting {pdf_file}: {str(e)}")
+                QApplication.processEvents()
         
         #ocr
-        self.progress_log.append("Starting Azure OCR Phase...")
+        self.progress_log.append("Starting Azure OCR Phase")
+        QApplication.processEvents()
 
         for split_pdf in os.listdir(resume_split_dir):
             if not split_pdf.lower().endswith(".pdf"):
@@ -203,15 +210,19 @@ class ResumeProcessorGUI(QWidget):
             txt_output_path = os.path.join(ocr_output_dir, txt_filename)
 
             self.progress_log.append(f" OCR: {split_pdf}")
+            QApplication.processEvents()
             try:
                 extract_text_with_azure(full_pdf_path, txt_output_path)
                 self.progress_log.append(f" OCR success: {split_pdf}")
+                QApplication.processEvents()
             except Exception as e:
                 self.progress_log.append(f" OCR failed: {split_pdf} — {str(e)}")
+                QApplication.processEvents()
 
 
 
         self.progress_log.append("Merging OCR text into full candidate blocks...")
+        QApplication.processEvents()
         for f in glob.glob("output/jsons/*"):
                         if os.path.isfile(f):
                             os.remove(f)
@@ -235,11 +246,14 @@ class ResumeProcessorGUI(QWidget):
                     output_dir=merged_text_dir
                 )
                 self.progress_log.append(f" Merged text: {split_pdf} → {len(page_groups)} candidates")
+                QApplication.processEvents()
             except Exception as e:
                 self.progress_log.append(f"Failed to merge text for {split_pdf}: {str(e)}")
+                QApplication.processEvents()
         
         
         self.progress_log.append("Starting AI field extraction with GPT...")
+        QApplication.processEvents()
 
         merged_text_dir = os.path.abspath("temp/raw_texts_per_candidate")
 
@@ -252,6 +266,7 @@ class ResumeProcessorGUI(QWidget):
             json_path = os.path.join(json_output_dir, json_filename)
 
             self.progress_log.append(f" Extracting fields from: {file}")
+            QApplication.processEvents()
             try:
                 with open(txt_path, "r", encoding="utf-8") as f:
                     text = f.read()
@@ -262,11 +277,13 @@ class ResumeProcessorGUI(QWidget):
                     json.dump(result, out_f, indent=2)
 
                 self.progress_log.append(f"Extracted and saved: {json_filename}")
+                QApplication.processEvents()
             except Exception as e:
                 self.progress_log.append(f" Extraction failed for {file}: {str(e)}")
+                QApplication.processEvents()
 
-        #final bundling
         self.progress_log.append("Starting final bundling and renaming of PDFs...")
+        QApplication.processEvents()
 
         for split_pdf in os.listdir(resume_split_dir):
             if not split_pdf.endswith(".pdf"):
@@ -277,7 +294,8 @@ class ResumeProcessorGUI(QWidget):
             json_path = os.path.join(json_output_dir, base_name + ".json")
 
             if not os.path.exists(json_path):
-                self.progress_log.append(f"⚠️ Skipping: No matching JSON for {split_pdf}")
+                self.progress_log.append(f" Skipping: No matching JSON for {split_pdf}")
+                QApplication.processEvents()
                 continue
 
             try:
@@ -285,31 +303,25 @@ class ResumeProcessorGUI(QWidget):
                 try:
                     
 
-                    # Delete split PDF
                     os.remove(pdf_path)
 
-                    # Delete all files in temp/preprocessed
                     for f in glob.glob("temp/preprocessed/*"):
                         if os.path.isfile(f):
                             os.remove(f)
                     
 
-                    # Delete all files in temp/raw_texts_per_candidate
                     for f in glob.glob("temp/raw_texts_per_candidate/*"):
                         if os.path.isfile(f):
                             os.remove(f)
 
-                    # Delete all files in temp/raw_texts_per_page
                     for f in glob.glob("temp/raw_texts_per_page/*"):
                         if os.path.isfile(f):
                             os.remove(f)
 
-                    # Delete all files in temp/azure_ocr_imgs
                     for f in glob.glob("temp/azure_ocr_imgs/*"):
                         if os.path.isfile(f):
                             os.remove(f)
  
-                    # Delete JSON output
                     json_dir = "output/jsons"
                     for f in os.listdir(json_dir):
                         if base_name in f:
@@ -317,14 +329,19 @@ class ResumeProcessorGUI(QWidget):
                                 os.remove(os.path.join(json_dir, f))
                             except Exception as e:
                                 self.progress_log.append(f" Could not remove image {f}: {e}")
+                                QApplication.processEvents()
 
 
                     self.progress_log.append(f" Cleaned temp files for: {base_name}")
+                    QApplication.processEvents()
                 except Exception as cleanup_err:
                     self.progress_log.append(f" Failed to clean temp files for {base_name}: {str(cleanup_err)}")
+                    QApplication.processEvents()
                 self.progress_log.append(f" Bundled → {os.path.basename(final_pdf)}")
+                QApplication.processEvents()
             except Exception as e:
                 self.progress_log.append(f" Bundle failed for {split_pdf}: {str(e)}")
+                QApplication.processEvents()
 
 
 

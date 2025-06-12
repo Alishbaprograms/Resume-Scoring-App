@@ -1,0 +1,27 @@
+{
+  "Full Name": "Lesley Barnes",
+  "Email Address": "lmbarnes@ucdavis.edu",
+  "Phone Number": "925-212-2391",
+  "Latest University": "University of California, Davis",
+  "Degree": "BS",
+  "Major": "Geology",
+  "Graduation Date": "2011",
+  "Previous University": null,
+  "Met on Campus": false,
+  "Campus Scores": {
+    "Technical capabilities": 6,
+    "Aligned to Arcadis Values": 6,
+    "Prior Experience": 6,
+    "Resume Quality/Flow": 8,
+    "Degree Alignment": 12,
+    "Geographic Alignment": 13,
+    "Academic Achievement": 14
+  },
+  "Total Score": 65,
+  "Cities/States of interest mentioned": [
+    "Walnut Creek, CA",
+    "Davis, CA",
+    "Stanford, CA",
+    "Germantown, MD"
+  ]
+}
